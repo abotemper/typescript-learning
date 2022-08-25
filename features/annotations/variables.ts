@@ -9,6 +9,8 @@
 // bobo = "asdasd";//error
 
 let apples: number = 5;
+let apples2 = 5;//no error, because typescript figure it out by itself
+
 let speed: string = 'fast';
 let hasName: boolean = true;
 let nothingMuch: null = null;
@@ -40,3 +42,14 @@ let point: { x: number; y: number } = {
 const logNumber: (i: number) => void = (i: number) => {
   console.log(i);
 };
+
+//when to use annotations
+//1# function that returns the 'any' type
+const json = '{"x": 10, "y": 20}';//json 解析的时候可能性太多了，所以这就是any，必须标志每个东西都是什么
+const coordinates = JSON.parse(json);
+console.log(coordinates); //{x: 10, y:20}
+coordinates.asdasdasdasdasd; // no warning, its any
+
+const coordinates2: {x: number; y: number} = JSON.parse(json);
+console.log(coordinates2);
+coordinates2.asdasd; //here we see the error
