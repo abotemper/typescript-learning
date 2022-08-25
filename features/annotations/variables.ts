@@ -52,4 +52,16 @@ coordinates.asdasdasdasdasd; // no warning, its any
 
 const coordinates2: {x: number; y: number} = JSON.parse(json);
 console.log(coordinates2);
-coordinates2.asdasd; //here we see the error
+// coordinates2.asdasd; //here we see the error
+
+//2) when we declare a variable on one line
+//and initalizate it later
+
+let words = ['red', 'green', 'blue'];
+let foundWord: boolean; // let foundWord = false
+
+for (let i = 0; i < words.length; i++){
+  if (words[i] === 'green'){
+    foundWord = true;
+  }
+}
