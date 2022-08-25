@@ -17,3 +17,21 @@ let nothing: undefined = undefined;
 //built in objects
 
 let now: Date = new Date();
+
+//Array
+let colors: string[] = ['red', 'green', 'blue'];
+let myNumbers: number[] = [1, 2, 3];
+let truths: boolean[] = [true, true, false];
+
+//Classes
+class Car {
+
+}
+//this is an instance(car), Car is a class
+let car: Car = new Car();
+
+//Object literal
+let point: { x: number; y: number } = {
+  x: 10, // x: "asdasdasd" will be an error
+  y: 20 // a: 20 wille be an error
+};
