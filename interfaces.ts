@@ -1,15 +1,24 @@
 //interface 首字母最好大写 ，规范一些, 内部用分号;隔开
 //所谓interface 其实是创建了一个type
+//有点像object 但又不是，因为 ,;
+//后面要输入函数的地方，如果是这个interface type的话，关键字key必须与interface一致，后面的东西必须符合interface中定义的类型才行
 interface Vehicle {
    name: string;
    year: number;
    broken: boolean;
+   
+   //how to add a function
+   summary(): string;//前面是函数名， 后面是函数返回类型，函数参数也必须一致
 }
 
 const oldCivic = {
   name: 'civic',
   year: 2000,
-  broken: true
+  broken: true,
+
+  summary(): string {
+    return `Name: ${this.name}`;
+  }
 };
 
 const wrongOne = {
@@ -36,6 +45,7 @@ const printVehicle2 = (vehicle: Vehicle): void => {
   console.log(`Name: ${vehicle.name}`);
   console.log(`Year: ${vehicle.year}`);
   console.log(`Broken?: ${vehicle.broken}`);
+  console.log(vehicle.summary());
 };
 
 printVehicle(oldCivic);
