@@ -21,3 +21,14 @@ const myCar = carMakers.pop();
 carMakers.map((car: string): string => {
   return car.toUpperCase();
 });
+
+
+//flexible types
+const importantDates: (Date | string)[] = [new Date(), '2000-10-10'];
+
+importantDates.push('2020-8-28');
+importantDates.push(new Date());
+// importantDates.push(100); it will call a error, because it push a number into array
+
+
+//tuples like python
