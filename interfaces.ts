@@ -70,7 +70,7 @@ const printVehicle3= (vehicle: Vehicle2): void => {
 };
 
 printVehicle(oldCivic);
-printVehicle2(oldCivic);
+// printVehicle2(oldCivic);
 printVehicle3(oldCivic);
 // printVehicle(wrongOne);
 // printVehicle2(wrongOne);这两个就是错的， 因为类型不符合
