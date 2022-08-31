@@ -8,6 +8,12 @@ class Vehicle {
   // public drive(): void {
   //   console.log('chugga chugga');
   // }
+  // color: string = 'red';
+
+  constructor(public color: string) {
+  
+
+  }
 
   protected honk(): void {
     console.log('beep');
@@ -15,6 +21,9 @@ class Vehicle {
 }
 
 class Car extends Vehicle {
+  constructor(public wheels: number, color: string){
+    super(color);
+  }
    private drive(): void {
     console.log('boom');//重写了
   }
@@ -24,11 +33,14 @@ class Car extends Vehicle {
   }
 }
 
-// const vehicle = new Vehicle();
+const vehicle = new Vehicle('orange');
 // vehicle.drive();
 // vehicle.honk();
+console.log(vehicle.color);
 
-const car = new Car();
-// car.drive(); drive in car is a private method so we cant use it like that
-car.startDrivingProcess();// but we can use like that
-// car.honk();
+// const car = new Car();
+// // car.drive(); drive in car is a private method so we cant use it like that
+// car.startDrivingProcess();// but we can use like that
+// // car.honk();
+
+const car = new Car(4, 'red');
