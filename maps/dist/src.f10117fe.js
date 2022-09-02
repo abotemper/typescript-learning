@@ -136970,9 +136970,13 @@ function () {
   //       })
   //   }
   // }
+  //这个也不够完美，因为如果有n个有position的东西，难道我们都给mappable里写进来吗
+  //最好告诉他们谁想进来他必须有position这样的property
+  //这时候就要用interface了，来确定他们自己是否mappable
 
 
   CustomMap.prototype.addMarker = function (mappable) {
+    //mappable. 后面只能获得二者共同的部分
     new google.maps.Marker({
       map: this.googleMap,
       position: {
