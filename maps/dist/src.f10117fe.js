@@ -136950,7 +136950,37 @@ function () {
         lng: 0
       }
     });
-  }
+  } //这样写两个这么相似的代码就是狮山代码,需要我们进行抽象一波，所以 抽象能力，形容能力，总结共同特点能力很重要
+  //   addUserMarker (user: User): void {
+  //      new google.maps.Marker({
+  //       map: this.googleMap,
+  //       position: {
+  //         lat: user.location.lat,
+  //         lng: user.location.lng
+  //       }
+  //      })
+  //   }
+  //   addCompanyMarker(company: Company): void {
+  //       new google.maps.Marker({
+  //         map: this.googleMap,
+  //         position: {
+  //           lat: company.location.lat,
+  //           lng: company.location.lng
+  //         }
+  //       })
+  //   }
+  // }
+
+
+  CustomMap.prototype.addMarker = function (mappable) {
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: mappable.location.lat,
+        lng: mappable.location.lng
+      }
+    });
+  };
 
   return CustomMap;
 }();
@@ -136969,11 +136999,12 @@ var Company_1 = require("./Company");
 
 var CustomMap_1 = require("./CustomMap");
 
-var user = new User_1.User();
-console.log(user);
 var company = new Company_1.Company();
 console.log(company);
+var user = new User_1.User();
 var customMap = new CustomMap_1.CustomMap('map');
+customMap.addMarker(user);
+customMap.addMarker(company);
 },{"./User":"src/User.ts","./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts"}],"../../../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
