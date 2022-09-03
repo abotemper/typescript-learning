@@ -51,12 +51,20 @@ export class CustomMap {
 //这时候就要用interface了，来确定他们自己是否mappable
 addMarker (mappable: Mappable): void {
   //mappable. 后面只能获得二者共同的部分
-  new google.maps.Marker({
+  const marker = new google.maps.Marker({
    map: this.googleMap,
    position: {
      lat: mappable.location.lat,
      lng: mappable.location.lng
    }
   })
+
+  marker.addListener('click', () => {
+    const infoWindow = new google.maps.InfoWindow({
+      content: 'HI there'
+    });
+    infoWindow.open(this.googleMap, marker);
+  })
+  
 }
 }
