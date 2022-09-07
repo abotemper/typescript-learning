@@ -1,0 +1,45 @@
+// nothing to do with generics
+//笨蛋方法
+// const addOne = (a: number): number => {
+//   return a + 1;
+// };
+
+// const addTwo = (a: number): number => {
+//   return a + 2;
+// };
+
+// const addThree = (a: number): number => {
+//   return a + 3;
+// };
+
+// //好方法
+// const add = (a: number, b: number): number => {
+//   return a + b;
+// };
+
+//笨蛋方法
+// class HoldNumber {
+//   data: number;
+// }
+// class HoldString{
+//   data: string;
+// }
+
+// const holdNumber = new HoldNumber();
+// const holdString = new HoldString();
+
+// holdNumber.data = 123;
+// holdString.data = 'hhh';
+
+class HoldAnything<TypeOfData> {
+  data: TypeOfData;
+  add(a: TypeOfData): TypeOfData {
+    return a;
+  }
+}
+
+const holdNumber = new HoldAnything<number>();
+holdNumber.data = 123;
+
+const holdString = new HoldAnything<string>();
+holdString.data = 'hhh';
