@@ -1,15 +1,13 @@
-
-
+import { CsvFileReader } from "./CsvFileReader";
 import { MatchReader } from "./MatchReader";
 import { Summary } from "./Summary";
 
-
-
-
 //create an instance of matchereader and pass in something satisfying
 //the 'datareader' interface
-const matcheReader = MatchReader.fromCsv('football.csv');
-matcheReader.load();
+const csvFileReader = new CsvFileReader('football.csv');
+
+const matcheReader = new MatchReader(csvFileReader);
+matcheReader.load()
 
 const summary = Summary.winAnalysisWithHtmlReport('Man United');
 

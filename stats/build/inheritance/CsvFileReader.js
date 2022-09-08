@@ -1,24 +1,21 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CsvFileReader = void 0;
-const fs_1 = __importDefault(require("fs"));
-class CsvFileReader {
-    constructor(filename) {
-        this.filename = filename;
-        this.data = [];
-    }
-    read() {
-        this.data = fs_1.default.readFileSync(this.filename, {
-            encoding: 'utf-8'
-        })
-            .split('\n')
-            .map((row) => {
-            return row.split(',');
-        })
-            .map(this.mapRow);
-    }
-}
-exports.CsvFileReader = CsvFileReader;
+// import fs from 'fs';
+// export abstract class CsvFileReader<TypeOfData> {
+//   data: TypeOfData[] = [];
+//   constructor(public filename: string) {}
+//   read(): void {
+//     this.data = fs.readFileSync(this.filename, {
+//       encoding: 'utf-8'
+//     })
+//       .split('\n')
+//       .map(
+//         (row: string): string[] => {
+//         return row.split(',');
+//       })
+//         .map(this.mapRow);
+//   }
+// //在抽象类中先声明一个方法，并暂至一个类型，到子类中声明具体类型并实现方法。
+// //这样具体把数据每一行改成什么类型只需要在子类中改动
+// //或者有不同行类目的东西，我们可以再建立一个子类，继承后另外实现
+//   abstract mapRow(row: string[]): TypeOfData;
+// }
