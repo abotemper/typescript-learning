@@ -1,12 +1,27 @@
 
-import { MatchResult } from "./MatcheResult";
+
 import { MatchReader } from "./MatchReader";
+import { Summary } from "./Summary";
 
-const reader = new MatchReader('football.csv');
-reader.read();
-const dateOfFirstMatch = reader.data[0][0]
 
-console.log(dateOfFirstMatch)
+
+
+//create an instance of matchereader and pass in something satisfying
+//the 'datareader' interface
+const matcheReader = MatchReader.fromCsv('football.csv');
+matcheReader.load();
+
+const summary = Summary.winAnalysisWithHtmlReport('Man United');
+
+summary.buildAndPrintReport(matcheReader.matches);
+
+//matcheReader.matches
+
+// const reader = new MatchReader('football.csv');
+// reader.read();
+// const dateOfFirstMatch = reader.data[0][0]
+
+// console.log(dateOfFirstMatch)
 
 // enum = enumeration
 //给别的程序员看，这里面的东西联系紧密，很敏感， 很有逻辑性，不能乱删
@@ -19,14 +34,5 @@ console.log(dateOfFirstMatch)
 // const awayWin = 'A';
 // const draw = 'D';
 
-let manUnitedWins = 0;
 
-for (let match of reader.data) {
-  if (match[1] === 'Man United' && match[5] === MatchResult.HomeWin) {
-    manUnitedWins++;
-  } else if (match[2] === 'Man United' && match[5] === MatchResult.AwayWin) {
-    manUnitedWins++;
-  }
-}
 
-console.log(`Man United won ${manUnitedWins} games`);
