@@ -1,3 +1,5 @@
+//此文件用于分割字符串为二维数组
+
 import fs from 'fs';
 
 export class CsvFileReader {

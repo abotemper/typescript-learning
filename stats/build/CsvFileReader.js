@@ -1,4 +1,5 @@
 "use strict";
+//此文件用于分割字符串为二维数组
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };

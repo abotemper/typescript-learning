@@ -1,4 +1,5 @@
 "use strict";
+//此文件负责将二维数组个名目的类型进行确定
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MatchReader = void 0;
 const utills_1 = require("./utills");

@@ -1,4 +1,8 @@
+//此文件负责将二维数组个名目的类型进行确定
+
 import { dateStringToDate } from './utills';
+
+//确定了类型中有一个枚举类型
 import { MatchResult } from "./MatcheResult";
 import { MatchData } from './MatchData'; 
 import { CsvFileReader } from './CsvFileReader';

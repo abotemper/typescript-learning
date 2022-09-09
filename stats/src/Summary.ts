@@ -1,3 +1,5 @@
+//此文件负责定义两种接口，并定义一个类，这个类负责将最后结果打印出来
+
 import { MatchData } from "./MatchData";
 import { WinsAnalysis } from "./analyzers/WinsAnalysis";
 import { HtmlReport } from "./reportTarget/HtmlReport";

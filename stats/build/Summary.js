@@ -1,4 +1,5 @@
 "use strict";
+//此文件负责定义两种接口，并定义一个类，这个类负责将最后结果打印出来
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Summary = void 0;
 const WinsAnalysis_1 = require("./analyzers/WinsAnalysis");
