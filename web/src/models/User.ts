@@ -4,7 +4,8 @@ interface UserProps {
   age?: number;
 }
 
-type Callback = () => {};
+//这是一个类型， 是一个没有返回值的函数
+type Callback = () => void;
 
 export class User {
   events: { [key: string]: Callback[] } = {};
@@ -20,5 +21,9 @@ export class User {
     Object.assign(this.data, update);
   }
 
-  on(eventName: string, callback: Callback) {}
+  on(eventName: string, callback: Callback) {
+    const handlers = this.events[eventName] || [];
+    handlers.push(callback);
+    this.events[eventName] = handlers; 
+  }
 }
