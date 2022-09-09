@@ -43,6 +43,7 @@ function printNumber(arr: number[]): void {
 function printAnything<T>(arr: T[]): void {
   for (let i = 0; i < arr.length; i++) {
     console.log(arr[i]);
+    
   }
 }
 
