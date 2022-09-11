@@ -1,4 +1,7 @@
+import axios, { AxiosResponse } from 'axios';
+
 interface UserProps {
+  id?: number;
   //这样的意思是可能有也可能没有，没有没啥关系，这样可以改一个东西
   name?: string;
   age?: number;
@@ -37,5 +40,12 @@ export class User {
     handlers.forEach(callback => {
       callback();
     })
+  }
+
+  fetch(): void {
+     axios.get(`http://localhost:3000/users/${this.get('id')}`)
+        .then((response: AxiosResponse): void => {
+            this.set(response.data);
+        });
   }
 }

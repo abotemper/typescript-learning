@@ -1,11 +1,11 @@
-import axios from 'axios';
+import { User } from './models/User';
 
-axios.post('http://localhost:3000/users', {
-    name: 'muname',
-    age: 20
-});
+const user = new User({ id: 1 });
 
-
+user.fetch();
+setTimeout(() => {
+    console.log(user);
+}, 3000);
 // import { User } from './models/User';
 
 // const user = new User({ name: 'myname', age: 20});
