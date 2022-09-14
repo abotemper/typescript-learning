@@ -1,7 +1,7 @@
 
 import { Eventing } from './Eventing';
 
-interface UserProps {
+export interface UserProps {
   id?: number;
   //这样的意思是可能有也可能没有，没有没啥关系，这样可以改一个东西
   name?: string;
