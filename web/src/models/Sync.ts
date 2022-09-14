@@ -1,8 +1,11 @@
 import axios, { AxiosPromise, AxiosResponse } from 'axios';
-import { UserProps } from './User';
+
+interface HasId {
+  id?: number;
+}
 
 //http://localhost:3000/users
-export class Sync {
+export class Sync<T extends HasId> {
 
   constructor(public rootUrl: string) {} 
 
@@ -11,14 +14,15 @@ export class Sync {
  }
 
 
- save(data: UserProps): void {
+ save(data: T): AxiosPromise {
    const { id } = data;
+
    if (id) {
      //put
-     axios.put(`${this.rootUrl}/${id}`, data);
+     return axios.put(`${this.rootUrl}/${id}`, data);
    } else {
      //post
-     axios.post(this.rootUrl, data);
+     return axios.post(this.rootUrl, data);
    }
  }
 }
