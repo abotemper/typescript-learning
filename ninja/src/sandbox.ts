@@ -126,3 +126,47 @@ const minus = (a: number, b: number): number => {
 
 let result = minus(10, 7);
 result = 'asd'//这就不行了
+
+const logDetails = (uid: string | number, item: string) => {
+  console.log(`${item} has a uid of ${uid}`);
+}
+//这样每次都单独设置类型就太繁琐了，所以要想一些办法
+const greet2 = (user:{ name: string, age: 35, uid: string | number}) => {
+  console.log(`${user.name} hello`);
+}
+const greet3 = (user:{ name: string, age: 35, uid: string | number}) => {
+  console.log(`${user.name} hello`);
+}
+//所以如下
+type StringOrNum = string | number;
+type objWithName = { name: string, age: number, uid: StringOrNum}
+const greet4 = (user: objWithName) => {
+  console.log(`${user.name} hello`);
+}
+
+//function
+//example(1)
+let gree: (a: string, b: string) => void;
+gree = (name: string, greeting: string) => {
+  console.log(`${name} says ${greeting}`);
+}
+//example(2)
+let calc: (a: number, b: number, c: string) => number;
+calc = (num1: number, num2: number, action: string) => {
+  if(action === 'add') {
+    return num1 + num2;
+  }else{
+    return num1 - num2;
+  }
+  //这里必须return，因为在type规定的时候，就规定了必须返回一个number
+}
+
+//example(3)
+let logDetail: (obj: { name: string, age: number }) => void;
+type person = {name: string, age: number};
+logDetail = (ninja: {name: string, age: number}) => {
+  console.log(`${ninja.name} is ${ninja.age} years old`);
+}
+logDetail = (ninja: person) => {
+  console.log(`${ninja.name} is ${ninja.age} years old`);
+}
