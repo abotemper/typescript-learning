@@ -1,4 +1,5 @@
 import { Invoice2 } from "./classes/Invoice.js";
+import { ListTemplate } from "./classes/ListTemplate.js";
 import { Payment } from "./classes/Payment.js";
 import { HasFormatter } from "./Interfaces/HasFormatter.js";
 
@@ -20,16 +21,23 @@ const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
 const detail = document.querySelector('#details') as HTMLInputElement;
 const amount = document.querySelector('#amount') as HTMLInputElement;
 
+//list template instance
+const ul = document.querySelector('ul')!;
+const list = new ListTemplate(ul);
 form2.addEventListener('submit', (e: Event) => {
   e.preventDefault();
 
+//这是个tuple
+  let values : [string, string, number] ;
+  values = [tofrom.value, detail.value, amount.valueAsNumber]
+
   let doc: HasFormatter;
   if(type.value === 'invoice') {
-    doc = new Invoice2(tofrom.value, detail.value, amount.valueAsNumber);
+    doc = new Invoice2(...values);
   }else {
-    doc = new Payment(tofrom.value, detail.value, amount.valueAsNumber);
+    doc = new Payment(...values);
   }
-  console.log(doc);
+  list.render(doc, type.value, 'end');
 })
 
 //calsses
@@ -141,3 +149,131 @@ docTwo = new Payment('haha', 'plumbing', 200);
 let docs: HasFormatter[] = [];
 docs.push(docOne);
 docs.push(docTwo);
+
+//generics泛型，指的是在定义函数，接口，类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性
+const addUID = (obj: object) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
+}
+
+let doc1 = addUID({ name: 'tianbo', age: 40 });
+
+console.log(doc1);
+// console.log(doc1.name);这样会报错，因为在addUID中，最初的时候他不知道这个对象里有什么property
+
+//在我们有了泛型之后，他会在我们实际传参时， 再认出或者定义我们传进去的究竟是什么
+const addUID2 = <T>(obj: T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
+}
+
+let doc2 = addUID2({ name: 'tianbo', age: 40 });
+console.log(doc2.name)//这就没事了
+// let doc3 = addUID2('asd')//但是这时我们传入一个字符串都行所以，不太严谨
+
+const addUID3 = <T extends object>(obj: T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
+}
+// let doc3 = addUID3('asd')//这时就会报错
+
+//还可以更具体一些
+const addUID4 = <T extends {name: string}>(obj: T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
+}
+// let doc3 = addUID4({ age: 40 })这也会报错，因为我们更具体了需要什么样的参数，需要里面有name
+
+
+//with interfaces
+interface Resource {
+  uid: number;
+  resourceName: string;
+  data: object;
+}
+
+const doc5 : Resource = {
+  uid: 1,
+  resourceName: 'person',
+  data: { name: 'haha' },
+  // data: 'asd', 这一行会报错， 因为我们接口里已经定死了必须是对象
+}
+
+interface Resource2 <T> {
+  uid: number;
+  resourceName: string;
+  data: T;
+}
+//在建立一个变量使用接口时，再进行定义要使用什么类型
+const doc6 : Resource2<string> = {
+  uid: 1,
+  resourceName: 'person',
+  data: 'asd'
+}
+
+interface Resource3 <T> {
+  uid: number;
+  resourceName: string;
+  data: T;
+}
+
+const doc7 : Resource3<object> = {
+  uid: 1,
+  resourceName: 'person',
+  data: {name: 'hh'}
+}
+
+const doc8: Resource3 <string[]> = {
+  uid: 2,
+  resourceName: 'pp',
+  data: ['a', 'b']
+}
+
+console.log(doc8);
+
+
+//enums, 下面book是0，person是4，就是枚举使下面的东西产生编号
+enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
+
+interface Resource4 <T> {
+  uid: number;
+  resourceName: number;
+  data: T;
+}
+const doc9 : Resource4<object> = {
+  uid: 10,
+  resourceName: 4,
+  data: {name: 'tianbo'}
+
+}
+
+const doc10 : Resource4<object> = {
+  uid: 10,
+  resourceName: 2,
+  data: { name: 'hou' }
+}
+
+interface Resource5 <T> {
+  uid: number;
+  resourceName: ResourceType;
+  data: T;
+}
+const doc11: Resource5<object> = {
+  uid: 10,
+  resourceName: ResourceType.PERSON,
+  data: { name: 'hourong' }
+}
+const doc12: Resource5<object> = {
+  uid: 13,
+  resourceName: ResourceType.BOOK,
+  data: { name: 'hourong' }
+}
+console.log(doc11, doc12);
+
+//tuples
+let arr = ['ryu', 25, true];
+//下面每个位置都已经定死了， tup每个位置不能乱换成别的数据类型
+let tup: [string, number, boolean] = ['ryu', 25, true];
+
+let student: [string, number];
+student = ['ss', 321321321];
